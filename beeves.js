@@ -66,18 +66,11 @@ Beeves.init = function(){
     );
   });
   browser.runtime.onMessageExternal.addListener(this.messageHandler);
-  Beeves.newFunction('setLightColor', function(room, color){
-    console.log(`${room} light color set to ${color}.`);
-    return true;
-  });
-  
-  Beeves.newFunction('turnLightOff', function(room){
-    console.log(`${room} light switched off.`);
-    return true;
-  });
-
-  Beeves.newFunction('turnLightOn', function(room){
-    console.log(`${room} light switched on.`)
+  Beeves.newFunction('newTab', function(room, color){
+    var creating = browser.tabs.create({
+      url:"https://example.org"
+    });
+    console.log('creating new tab!');
   });
 }
 

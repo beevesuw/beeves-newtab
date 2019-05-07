@@ -2,7 +2,7 @@
   "description": "A BEEVES compatible webextension",
   "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/runtime-examples",
   "manifest_version": 2,
-  "name": "beeves_webextensions",
+  "name": "beeves_browserfunctions",
   "version": "1.0",
   "permissions": ["notifications", "http://localhost:5000/*", "*://postman-echo.com/*", "webRequest", "<all_urls>", "storage"],
   "background": {
@@ -10,7 +10,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "extension@beeves.com"
+      "id": "tab@beeves.com"
     }
   }
 }
