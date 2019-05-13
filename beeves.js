@@ -60,7 +60,7 @@ Beeves.init = function(){
   browser.runtime.onInstalled.addListener(async function(details){
     let beevesJSON = await Beeves.getJSONData(Beeves.beevesFileEndpoint);
     let sending = await browser.runtime.sendMessage(
-      'base@beeves.com',
+      'beeves@beeves.dev',
       beevesJSON,
       {}
     );
