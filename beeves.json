@@ -1,7 +1,7 @@
 {
   "beeves": {
     "extension_name": "browser",
-    "activationWord": "browser",
+    "hotword": "browser",
     "functionMap": {
       "newTab": "newTab"
     }

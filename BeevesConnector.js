@@ -14,9 +14,10 @@ class BeevesConnector {
     this.shouldLogIncomingMessages = shouldLogIncomingMessages;
 
     browser.runtime.onInstalled.addListener(this.registerSkillWithBackend);
-    browser.runtime.onInstalled.onMessageExternal(
+    browser.runtime.onMessageExternal.addListener(
       this.handleIncomingMessageFromBeeves
     );
+    console.log("Created BeevesConnector");
   }
 
   async handleIncomingMessageFromBeeves(message, sender, sendResponse) {
@@ -61,7 +62,7 @@ class BeevesConnector {
       if (functionName in this.beevesActionHandler) {
         try {
           const result = this.beevesActionHandler[functionName].apply(
-            null,
+            globalThis,
             message["arguments"]
           ); // is globalThis neessary?
           if (this.shouldLogInvoke) console.log("Invoke: " + result);

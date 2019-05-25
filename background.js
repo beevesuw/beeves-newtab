@@ -4,7 +4,7 @@ async function getJSONData(endpoint) {
   try {
     let res = await fetch(endpoint);
     res = await res.json();
-    //log(res);
+    console.log(res);
     return res;
   } catch (err) {
     console.log(err);
@@ -43,10 +43,10 @@ let beevesActionHandler = {
 };
 
 async function initializeNewTabExtension() {
-  const beevesFileEndpoint = browser.extension.getURL("beeves.json");
+  const beevesFileEndpoint = browser.runtime.getURL("beeves.json");
   let beevesJSON = await getJSONData(beevesFileEndpoint);
   let beevesConnector = new BeevesConnector(beevesJSON, beevesActionHandler);
   return Promise.resolve(beevesConnector);
 }
 
-browser.runtime.onInstalled.addListener(initializeNewTabExtension);
+let beevesConnector = initializeNewTabExtension();
