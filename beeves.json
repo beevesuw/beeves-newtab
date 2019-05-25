@@ -1,28 +1,26 @@
 {
-    "beeves": {
-        "extension_name": "browser",
-        "hotword": "browser",
-        "functionMap" : {
-          "newTab" : "newTab"
-        }
-    },
-    "snips" : {
-      "entities": {
-      },
-      "intents": {
-        "newTab": {
-          "utterances": [
-            {
-              "data": [
-                {
-                  "text": "open a new tab"
-                }
-              ]
-            }
-          ]
-        }
-      },
-      "language": "en"
+  "beeves": {
+    "extension_name": "browser",
+    "activationWord": "browser",
+    "functionMap": {
+      "newTab": "newTab"
     }
+  },
+  "snips": {
+    "entities": {},
+    "intents": {
+      "newTab": {
+        "utterances": [
+          {
+            "data": [
+              {
+                "text": "open a new tab"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "language": "en"
+  }
 }
-

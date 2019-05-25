@@ -4,13 +4,20 @@
   "manifest_version": 2,
   "name": "beeves_browserfunctions",
   "version": "1.0",
-  "permissions": ["notifications", "http://localhost:5000/*", "*://postman-echo.com/*", "webRequest", "<all_urls>", "storage"],
+  "permissions": [
+    "notifications",
+    "http://localhost:5000/*",
+    "*://postman-echo.com/*",
+    "webRequest",
+    "<all_urls>",
+    "storage"
+  ],
   "background": {
-    "scripts": ["background.js", "beeves.js"]
+    "scripts": ["BeevesConnector.js", "background.js"]
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "tab@beeves.com"
+      "id": "tab@beeves.dev"
     }
   }
 }
