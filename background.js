@@ -11,24 +11,6 @@ async function getJSONData(endpoint) {
   }
 }
 
-async function postData(endpoint, payload) {
-  try {
-    let res = await fetch(endpoint, {
-      method: "post",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-    res = await res.json();
-    //log(res);
-    return res;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 let beevesActionHandler = {
   test: args => {
     console.log(`beevesRPC works! data: ${args}`);
