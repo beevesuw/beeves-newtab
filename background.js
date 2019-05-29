@@ -45,8 +45,11 @@ let beevesActionHandler = {
 async function initializeNewTabExtension() {
   const beevesFileEndpoint = browser.runtime.getURL("beeves.json");
   let beevesJSON = await getJSONData(beevesFileEndpoint);
-  let beevesConnector = new BeevesConnector(beevesJSON, beevesActionHandler);
-  return Promise.resolve(beevesConnector);
+  beevesConnector = new BeevesConnector(beevesJSON, beevesActionHandler);
+  browser.runtime.onMessageExternal.addListener(
+    beevesConnector.handleIncomingMessageFromBeeves
+  );
 }
 
-let beevesConnector = initializeNewTabExtension();
+let beevesConnector;
+initializeNewTabExtension();

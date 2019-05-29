@@ -12,23 +12,20 @@ class BeevesConnector {
     this.beevesActionHandler = beevesActionHandler;
     this.shouldLogInvoke = shouldLogInvoke;
     this.shouldLogIncomingMessages = shouldLogIncomingMessages;
-
-    browser.runtime.onInstalled.addListener(this.registerSkillWithBackend);
-    browser.runtime.onMessageExternal.addListener(
-      this.handleIncomingMessageFromBeeves
-    );
+    this.registerSkillWithBackend();
     console.log("Created BeevesConnector");
   }
 
   async handleIncomingMessageFromBeeves(message, sender, sendResponse) {
-    if (this.shouldLogIncomingMessages)
-      console.log("BeevesConnector: got message: " + invocationResult);
+    console.log(beevesConnector.shouldLogIncomingMessages);
+    if (beevesConnector.shouldLogIncomingMessages)
+      console.log(`BeevesConnector: got message: ${message}`);
 
-    if ("type" in message) {
+    if (message["type"]) {
       try {
         switch (message["type"]) {
           case "beevesRPC":
-            let invocationResult = await this.invoke(message);
+            let invocationResult = await beevesConnector.invoke(message);
             return Promise.resolve(invocationResult);
             break;
           default:
@@ -57,13 +54,13 @@ class BeevesConnector {
   }
 
   async invoke(messageFromBeeves) {
-    if ("functionName" in this.messageFromBeeves) {
-      const functionName = this.messageFromBeeves["functionName"];
-      if (functionName in this.beevesActionHandler) {
+    if (messageFromBeeves["functionName"]) {
+      const functionName = messageFromBeeves["functionName"];
+      if (this.beevesActionHandler[functionName]) {
         try {
           const result = this.beevesActionHandler[functionName].apply(
             globalThis,
-            message["arguments"]
+            messageFromBeeves["arguments"]
           ); // is globalThis neessary?
           if (this.shouldLogInvoke) console.log("Invoke: " + result);
           return Promise.resolve(result);
