@@ -4,6 +4,27 @@
     "hotword": "browser",
     "functionMap": {
       "newTab": "newTab"
+    },
+    "cards" : {
+      "confirmation" : {
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.0",
+        "body": [
+          {
+            "type": "TextBlock",
+            "text": "A new tab was opened",
+            "weight": "bolder",
+            "size": "medium"
+          }
+        ],
+        "actions": [
+          {
+            "type": "Action.Submit",
+            "title": "doSomething"
+          }
+        ]
+      }
     }
   },
   "snips": {
