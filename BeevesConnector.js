@@ -62,12 +62,34 @@ class BeevesConnector {
             globalThis,
             messageFromBeeves["arguments"]
           ); // is globalThis neessary?
-          if (this.shouldLogInvoke) console.log("Invoke: " + result);
+          if (this.shouldLogInvoke) console.log("Invoke: " + JSON.stringify(result));
           return Promise.resolve(result);
         } catch (err) {
           console.log("BeevesConnector: invoke failed: " + err);
         }
       }
     }
+  }
+
+  createResponse(status, cardName = false){
+    let response = new BeevesConnectorResponse(this.beevesFileContents, status, cardName);
+    return response;
+  }
+}
+
+class BeevesConnectorResponse {
+  constructor(
+      beevesFileContents,
+      status,
+      cardName = false
+  ) {
+      this.status = status;
+      if(cardName){
+          this.card = beevesFileContents["beeves"]["cards"][cardName];
+      }
+  }
+
+  log(){
+      console.log(this);
   }
 }

@@ -21,6 +21,8 @@ let beevesActionHandler = {
       url: "https://example.org"
     });
     console.log("creating new tab!");
+    response = beevesConnector.createResponse(0, 'confirmation');
+    return response;
   }
 };
 
